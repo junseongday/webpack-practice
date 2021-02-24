@@ -6,4 +6,5 @@ function component() {
     el.classList = style.helloWebpack
     return el;
 }
+
 document.body.appendChild(component());
