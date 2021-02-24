@@ -1,5 +1,6 @@
 import 'normalize.css';
 import style from './index.css';
+import $ from 'jquery';
 function component() {
     const el = document.createElement('div');
     el.innerHTML = 'Hello Webpack';
@@ -8,3 +9,4 @@ function component() {
 }
 
 document.body.appendChild(component());
+console.log($(`.${style.helloWebpack}`).length)

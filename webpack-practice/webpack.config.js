@@ -7,7 +7,7 @@ module.exports = {
     entry: './index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.[hash].js'
+        filename: '[name].[chunkhash].js'
     },
     module: {
         rules: [
@@ -34,11 +34,7 @@ module.exports = {
             },
             {
                 test: /\.hbs$/,
-                use: [
-                    {
-                        loader: 'handlebars-loader'
-                    }
-                ]
+                use: ['handlebars-loader']
             }
         ]
     },
@@ -55,5 +51,19 @@ module.exports = {
         }),
         new CleanWebpackPlugin()
     ],
+    optimization: {
+        runtimeChunk: {
+            name: 'runtime'
+        },
+        splitChunks: {
+            cacheGroups: {
+                commons: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'venders',
+                    chunks: 'all'
+                }
+            }
+        }
+    },
     mode: 'none'
 }
