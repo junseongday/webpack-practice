@@ -9,6 +9,7 @@ function component() {
 
     const imgEl = document.createElement('img');
     imgEl.src = slackSvg;
+    imgEl.classList = style.slackImg;
 
     console.log(imgEl);
     console.log(style);

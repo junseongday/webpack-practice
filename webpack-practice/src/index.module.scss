@@ -1,8 +1,20 @@
+$bg-color: #233c34;
 $font-color: green;
-div {
-  color: red;
+body {
+  background-color: $bg-color;
+  text-align: center;
 }
-
 .helloWebpack {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 20px;
   color: $font-color;
+}
+.slackImg {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  margin-top: -80px;
 }
