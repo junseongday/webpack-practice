@@ -13,27 +13,35 @@ module.exports = {
         filename: '[name].[chunkhash].js'
     },
     module: {
-        rules: [
+        rules: [ // filename.module.scss => css module, filename.scss => global 
             {
-                test: /\.css$/i,
-                use: 
-                [
-                    // {
-                    //     loader: 'style-loader',
-                    //     options: {
-                    //         injectType: 'singletonStyleTag'
-                    //     }   
-                    // },
+                test: /\.s?css$/i,
+                oneOf: [
                     {
-                        loader: MiniCssExtractPlugin.loader
+                        test: /\.module\.s?css$/,
+                        use: 
+                        [
+                            {
+                                loader: MiniCssExtractPlugin.loader
+                            },
+                            {
+                                loader: 'css-loader',
+                                options: {
+                                    modules: true
+                                }
+                            },
+                            'sass-loader'
+                        ]
+
                     },
                     {
-                        loader: 'css-loader',
-                        options: {
-                            modules: true
-                        }
-                    },
-                ]
+                        use: [
+                            MiniCssExtractPlugin.loader,
+                            'css-loader',
+                            'sass-loader'
+                        ]
+                    }
+                ],
             },
             {
                 test: /\.hbs$/,

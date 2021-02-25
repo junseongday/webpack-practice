@@ -1,5 +1,5 @@
 import 'normalize.css';
-import style from './index.css';
+import style from './index.module.scss';
 import $ from 'jquery';
 import slackImg from './images/slack.png';
 import slackSvg from './images/slack.svg'
@@ -11,6 +11,7 @@ function component() {
     imgEl.src = slackSvg;
 
     console.log(imgEl);
+    console.log(style);
     el.appendChild(imgEl)
 
     el.classList = style.helloWebpack
