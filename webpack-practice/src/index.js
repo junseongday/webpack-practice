@@ -3,6 +3,7 @@ import style from './index.module.scss';
 import $ from 'jquery';
 import slackImg from './images/slack.png';
 import slackSvg from './images/slack.svg'
+import '@babel/polyfill';
 function component() {
     const el = document.createElement('div');
     el.innerHTML = 'Hello Webpack';
