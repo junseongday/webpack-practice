@@ -1,7 +1,9 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const {CleanWebpackPlugin} = require('clean-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserWerbpackPlugin = require('terser-webpack-plugin')
 
 module.exports = {
     entry: './index.js',
@@ -29,7 +31,7 @@ module.exports = {
                         options: {
                             modules: true
                         }
-                    }
+                    },
                 ]
             },
             {
@@ -42,11 +44,23 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: '[contenthash].css'
         }),
+        new OptimizeCssAssetsPlugin({
+            assetNameRegExp: /\.css$/g,
+            cssProcessor: require('cssnano'),
+            cssProcessorPluginOptions: {
+                preset: ['default', { discardComments: { removeAll: true } }],
+            },
+            canPrint: true
+        }),
         new HtmlWebpackPlugin({
             title: 'webbpack hbs',
             template: './template.hbs',
             meta: {
                 viewport: 'width=device-width, initial-scale=1'
+            },
+            minify: {
+                collapseWhitespace: true,
+                useShortDoctype: true
             }
         }),
         new CleanWebpackPlugin()
@@ -63,7 +77,11 @@ module.exports = {
                     chunks: 'all'
                 }
             }
-        }
+        },
+        minimize: true,
+        // default cache true
+        minimizer: [new TerserWerbpackPlugin({
+        })]
     },
     mode: 'none'
 }
