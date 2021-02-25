@@ -2,8 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const TerserWerbpackPlugin = require('terser-webpack-plugin')
+const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserWebpackPlugin = require('terser-webpack-plugin')
 
 module.exports = {
     entry: './index.js',
@@ -44,7 +44,7 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: '[contenthash].css'
         }),
-        new OptimizeCssAssetsPlugin({
+        new OptimizeCssAssetsWebpackPlugin({
             assetNameRegExp: /\.css$/g,
             cssProcessor: require('cssnano'),
             cssProcessorPluginOptions: {
@@ -80,7 +80,7 @@ module.exports = {
         },
         minimize: true,
         // default cache true
-        minimizer: [new TerserWerbpackPlugin({
+        minimizer: [new TerserWebpackPlugin({
         })]
     },
     mode: 'none'
