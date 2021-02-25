@@ -1,13 +1,14 @@
 import 'normalize.css';
 import style from './index.css';
 import $ from 'jquery';
-import slackImg from './images/slack.png'
+import slackImg from './images/slack.png';
+import slackSvg from './images/slack.svg'
 function component() {
     const el = document.createElement('div');
     el.innerHTML = 'Hello Webpack';
 
     const imgEl = document.createElement('img');
-    imgEl.src = slackImg;
+    imgEl.src = slackSvg;
 
     console.log(imgEl);
     el.appendChild(imgEl)
