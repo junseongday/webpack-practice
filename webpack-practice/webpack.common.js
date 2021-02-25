@@ -58,7 +58,7 @@ module.exports = {
         }),
         new CleanWebpackPlugin(),
         new webpack.DefinePlugin({
-            IS_PRODUCTION: true
+            IS_PRODUCTION: isProduction
         })
     ]
 }
