@@ -10,3 +10,4 @@ function component() {
 
 document.body.appendChild(component());
 console.log($(`.${style.helloWebpack}`).length)
+console.log(`IS_PRODUCTION: ${IS_PRODUCTION}`);
