@@ -1,5 +1,6 @@
 const {merge} = require('webpack-merge');
 const common = require('./webpack.common');
+const StyleLingPlugin = require('stylelint-webpack-plugin')
 
 const config = {
     mode: 'development',
@@ -14,6 +15,9 @@ const config = {
         },
         port: 4000
     },
+    plugins: [
+        new StyleLingPlugin()
+    ]
 };
 
 module.exports = merge(common, config);
